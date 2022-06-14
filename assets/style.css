@@ -1,0 +1,16 @@
+.testConcept {
+    display: block;
+    padding-top: 5px;
+    max-width: 150px;
+}
+.testConcept input {
+    display: flex;
+    border-radius: 5px;
+    box-shadow: none;
+}
+.testConcept p {
+    text-align: center;
+}
+.organizing {
+    padding-left: 30px;
+}

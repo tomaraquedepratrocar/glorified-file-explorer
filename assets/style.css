@@ -1,16 +1,45 @@
+#root {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+textarea {
+    resize: none;
+    width: 140px;
+    height: 18px;
+    border-radius: 8px;
+    border: none;
+}
+
 .testConcept {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding-top: 5px;
     max-width: 150px;
+    background-color: darkgray;
+    border-radius: 5px;
+    margin: 2px;
 }
 .testConcept input {
-    display: flex;
     border-radius: 5px;
-    box-shadow: none;
 }
 .testConcept p {
     text-align: center;
 }
-.organizing {
-    padding-left: 30px;
+
+.testConcept button{
+    align-self: flex-start;
+}
+
+.container {
+    margin-left: 200px;
+    width: auto;
+}
+
+canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index:-1;
 }

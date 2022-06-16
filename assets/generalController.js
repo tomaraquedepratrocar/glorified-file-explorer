@@ -3,6 +3,9 @@ let base = document.getElementById("root")
 let canvas = document.getElementById("canvas")
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+let ctx = canvas.getContext("2d")
+
+let ArrayLines = []
 
 //creates a button that creates a button
 let criadorDeStart = (base,title) =>{
@@ -29,24 +32,42 @@ let criadorDeStart = (base,title) =>{
     bigHolder.appendChild(holder)
     base.appendChild(bigHolder)
 
-    if(base.id!="root"){
-        drawLine(holder,base)
-    }
-
     summer.addEventListener("click",() => {
-        criadorDeStart(bigHolder,inputter.value,holder)
+        criadorDeStart(bigHolder,inputter.value)
         inputter.value= ""
+        AddLineToArray(holder.id, ("Node_"+(id_variable-1).toString()),ArrayLines)
         })
 }
 
 
-let drawLine = (node,father) =>{
-    let ctx = canvas.getContext("2d")
+
+let AddLineToArray = (firstNodeid, secondNodeid, array) => {
+    array.push([firstNodeid, secondNodeid])
+    redrawAllLines(array)
+
+}
+
+
+let redrawAllLines = (array) =>{
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    for(line of array){
+        console.log(line)
+        let element1 = document.getElementById(line[0])
+        let element2 = document.getElementById(line[1])
+        drawLine(element1,element2)
+    }
+}
+
+
+
+
+let drawLine = (father,node) =>{
     ctx.beginPath()
-    let pos = node.getBoundingClientRect()
+    let posSon = node.getBoundingClientRect()
     let posDad = father.getBoundingClientRect()
-    ctx.moveTo(posDad.x,posDad.y)
-    ctx.lineTo(pos.x+(pos.width/2),pos.y+(pos.height/2))
+    ctx.moveTo(posDad.x+(posDad.width/2),posDad.y+(posDad.height/2))
+    ctx.lineTo(posDad.x+(posDad.width/2),posSon.y+(posSon.height/2))
+    ctx.lineTo(posSon.x+(posSon.width/2),posSon.y+(posSon.height/2))
     console.log(posDad)
     ctx.stroke()
 }
